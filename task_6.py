@@ -1,24 +1,28 @@
 # В одномерном массиве найти сумму элементов, находящихся между минимальным и максимальным элементами.
 # Сами минимальный и максимальный элементы в сумму не включать.
-from random import random
 
-N = 10
-a = [0] * N
-for i in range(N):
-    a[i] = int(random() * 50)
-    print('%3d' % a[i], end='')
-print()
-min_id = 0
-max_id = 0
-for i in range(1, N):
-    if a[i] < a[min_id]:
-        min_id = i
-    elif a[i] > a[max_id]:
-        max_id = i
-print(a[min_id], a[max_id])
-if min_id > max_id:
-    min_id, max_id = max_id, min_id
-summa = 0
-for i in range(min_id + 1, max_id):
-    summa += a[i]
-print(summa)
+import random
+
+SIZE = 10
+MIN_ITEM = 0
+MAX_ITEM = 100
+array = [random.randint(MIN_ITEM, MAX_ITEM) for _ in range(SIZE)]
+print(array)
+
+idx_min = 0
+idx_max = 0
+for i in range(1, len(array)):
+    if array[i] < array[idx_min]:
+        idx_min = i
+    elif array[i] > array[idx_max]:
+        idx_max = i
+
+if idx_min > idx_max:
+    idx_min, idx_max = idx_max, idx_min
+
+print(f'Левая граница: {array[idx_min]}\nПравая граница: {array[idx_max]}')
+
+summ = 0
+for i in range(idx_min + 1, idx_max):
+    summ += array[i]
+print(f'Сумма = {summ}')
