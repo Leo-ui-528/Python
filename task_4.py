@@ -2,12 +2,25 @@
 import random
 
 SIZE = 10
+MIN_ITEM = 0
+array = [random.randint(MIN_ITEM, SIZE // 2) for _ in range(SIZE)]
+print(array)
 
-list_1 = [random.randint(0, 10) for _ in range(SIZE)]
+counter = {}
+frequency = 1
+num = None
+for item in array:
+    if item in counter:
+        counter[item] += 1
+    else:
+        counter[item] = 1
 
-max_index = 0
-for i in list_1:
-    if list_1.count(max_index) < list_1.count(i):
-        max_index = list_1.index(i)
+    if counter[item] > frequency:
+        frequency = counter[item]
+        num = item
 
-print(f'Число {i} в массиве {list_1}, встречается чаще всего')
+if num is not None:
+    print(f'Число {num} встречется {frequency} раз(а)')
+else:
+    print('Все элементы уникальны')
+
